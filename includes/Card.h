@@ -13,16 +13,19 @@ enum Suit {SPADES=1, HEARTS, DIAMONDS, CLUBS};
 
 class Card{
 public:
-  Card();
-  Card(Rank rank, Suit suit);
-  friend std::ostream& operator<< (std::ostream& os, Card& card);
-private:
-  Rank rank;
-  Suit suit;
-  std::string obtain_card_name();
+   Card(Rank rank = ACE, Suit suit = SPADES, bool is_ace_high = true);
+   friend std::ostream& operator<< (std::ostream& os, Card& card);
 
-  bool ace_high;
+   int get_rank() const;
+   int get_suit() const;
+private:
+   Rank rank;
+   Suit suit;
+   std::string obtain_card_name();
+
+   bool ace_high;
 };
 
+bool operator< (const Card& c1, const Card& c2);
 
 #endif
