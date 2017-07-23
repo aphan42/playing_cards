@@ -1,8 +1,15 @@
 #include "../includes/Card.h"
+#include <iostream>
 
+Card::Card(Rank rank, Suit suit):
+   rank(rank), suit(suit) {}
 
-Card::Card(Rank rank, Suit suit, bool is_ace_high):
-   rank(rank), suit(suit), ace_high(is_ace_high) {}
+Card::Card(const Card& other){
+   this->rank = other.rank;
+   this->suit = other.suit;
+}
+
+Card::~Card() {}
 
 std::string Card::obtain_card_name(){
    std::string card_name;
@@ -77,6 +84,13 @@ int Card::get_suit() const{
    return suit;
 }
 
+Card& Card::operator=(const Card& other){
+   this->rank = other.rank;
+   this->suit = other.suit;
+   return *this;
+}
+
+
 std::ostream& operator<< (std::ostream& os, Card& card){
    os << card.obtain_card_name();
    return os;
@@ -87,4 +101,8 @@ bool operator< (const Card& c1, const Card& c2){
    return false;
 }
 
+bool operator> (const Card& c1, const Card& c2){
+   if (c1.get_rank() > c2.get_rank()) return true;
+   return false;
+}
 

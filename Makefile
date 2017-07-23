@@ -8,9 +8,6 @@ OBJS= $(SRCS:.cpp=.o)
 UNIT_TEST=unit_tests/
 
 all: test
-	# @echo $(SRCS)
-	# @echo $(HEADER)
-	# @echo $(OBJS)
 
 test: card_tests
 
