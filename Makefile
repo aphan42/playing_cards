@@ -11,7 +11,7 @@ all: test
 
 test: card_tests
 
-card_tests: comparison_test print_test
+card_tests: comparison_test print_test big_three_test
 
 comparison_test:  $(SRCS) $(HEADER)
 	$(CXX) $(CXXFLAGS) $^ $(addprefix $(UNIT_TEST), comparison_test.cpp) -o $@
@@ -19,10 +19,13 @@ comparison_test:  $(SRCS) $(HEADER)
 print_test: $(SRCS) $(HEADER)
 	$(CXX) $(CXXFLAGS) $^ $(addprefix $(UNIT_TEST), print_test.cpp)  -o $@
 
+big_three_test: $(SRCS) $(HEADER)
+	$(CXX) $(CXXFLAGS) $^ $(addprefix $(UNIT_TEST), big_three_test.cpp) -o $@
+
 .PHONY: clean
 
 clean:
 	rm -f src/*.o $(UNIT_TEST)*.o *.o
 
 distclean: clean
-	rm -f comparison_test print_test
+	rm -f comparison_test print_test big_three_test
